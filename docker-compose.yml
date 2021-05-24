@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    environment:
+      - MOVIE_LIST
+      - DESTINATION_FOLDER
+    build: 
+      context: .
+
+    volumes:
+      - .:/app

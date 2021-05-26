@@ -6,6 +6,14 @@ name = "pypi"
 [packages]
 pandas = "*"
 python-dotenv = "*"
+xlrd = "*"
+openpyxl = "*"
+thepiratebay = "*"
+search-torrent = "*"
+tpblite = "*"
+magnet2torrent = "*"
+pyyify = "*"
+python-qbittorrent = "*"
 
 [dev-packages]
 

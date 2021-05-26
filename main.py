@@ -1,21 +1,10 @@
 import os
 import pandas as pd
-import time
-import sys
-import urllib.request as r
-import torrent_crawler
-import asyncio
 from qbittorrent import Client
-from pyYify import yify
-from magnet2torrent import Magnet2Torrent, FailedToFetchException
 from tpblite import TPB, CATEGORIES, ORDERS
 from dotenv import load_dotenv
 from os import listdir
 from os.path import isfile, join
-
-# Make asyncio work for Windows
-if sys.version_info[0] == 3 and sys.version_info[1] >= 8 and sys.platform.startswith('win'):
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 # Load environment
 load_dotenv()

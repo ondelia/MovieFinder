@@ -21,6 +21,9 @@ if sys.version_info[0] == 3 and sys.version_info[1] >= 8 and sys.platform.starts
 load_dotenv()
 movie_list = os.getenv('MOVIE_LIST')
 destination = os.getenv('DESTINATION_FOLDER')
+qb_client = os.getenv('QB_CLIENT')
+qb_login = os.getenv('QB_LOGIN')
+qb_password = os.getenv('QB_PASSWORD')
 
 # Load download source
 t = TPB()
@@ -45,7 +48,8 @@ while(i < len(filmsUnseen)):
     # Get film title and year
     filmTitle = filmsUnseen.iloc[i,0]
     filmYear = str(int(filmsUnseen.iloc[i,1]))
-    print(filmTitle + " " + filmYear)
+    filmSearch = filmTitle + " " + filmYear
+    print(filmSearch)
     alreadyExists = False
 
     # Check if the film is already in the destination folder
@@ -55,18 +59,15 @@ while(i < len(filmsUnseen)):
             break
 
     if alreadyExists:
+        print(filmSearch + " already exists. Going to next film.")
         i += 1
         continue
     else:
         # Go get the selected film
-        print(filmTitle)
-
-        #t.search('public domain', category=CATEGORIES.VIDEO.MOVIES)
-
-        movie = "The General 1926"
+        print("Attempting to download: " + filmSearch)
 
         # Quick search for torrents, returns a Torrents object
-        torrents = t.search(movie, order=ORDERS.NAME.ASC, category=CATEGORIES.VIDEO.HD_MOVIES)
+        torrents = t.search(filmSearch, order=ORDERS.NAME.ASC, category=CATEGORIES.VIDEO.HD_MOVIES)
 
         # See how many torrents were found
         print('There were {0} torrents found.'.format(len(torrents)))
@@ -85,27 +86,13 @@ while(i < len(filmsUnseen)):
         print(magLink)
         break
 
-# Download torrent from magnet link
-async def fetch_that_torrent(magLink):
-    m2t = Magnet2Torrent(magLink)
-    try:
-        filename, torrent_data = await m2t.retrieve_torrent()
-        return filename, torrent_data
-    except FailedToFetchException:
-        print("Failed")
-
-filename, torrent_data = asyncio.run(fetch_that_torrent(magLink))
-print("Test2")
-print(filename)
-print(torrent_data)
-
 #Qbittorrent
 print("Qbit Torrent")
 # connect to the qbittorent Web UI
-qb = Client("http://127.0.0.1:8080/")
+qb = Client(qb_client)
 
 # put the credentials (as you configured)
-qb.login("admin", "adminadmin")
+qb.login(qb_login, qb_password)
 
-fullPath = os.getcwd() + '\\' + destination
+# Download film
 qb.download_from_link(magLink, savepath=destination)

@@ -17,10 +17,6 @@ def getMagnetLink(t, filmSearch):
     # See how many torrents were found
     print('There were {0} torrents found.'.format(len(torrents)))
 
-    # Iterate through list of torrents and print info for Torrent object
-    for torrent in torrents:
-        print(torrent)
-
     # Get the most seeded torrent based on a filter
     torrent = torrents.getBestTorrent(min_seeds=1, min_filesize='350 MiB', max_filesize='6 GiB')
     print("The best torrent is: ")
@@ -28,5 +24,4 @@ def getMagnetLink(t, filmSearch):
 
     # Get the magnet link for a torrent
     magLink = torrent.magnetlink
-    print(magLink)
     return(magLink)

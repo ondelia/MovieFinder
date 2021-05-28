@@ -14,12 +14,8 @@ def getMagnetLink(t, filmSearch):
     # Quick search for torrents, returns a Torrents object
     torrents = t.search(filmSearch, order=ORDERS.NAME.ASC, category=CATEGORIES.VIDEO.HD_MOVIES)
 
-    # See how many torrents were found
-    print('There were {0} torrents found.'.format(len(torrents)))
-
     # Get the most seeded torrent based on a filter
     torrent = torrents.getBestTorrent(min_seeds=1, min_filesize='350 MiB', max_filesize='6 GiB')
-    print("The best torrent is: ")
     print(torrent)
 
     # Get the magnet link for a torrent

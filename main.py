@@ -10,7 +10,10 @@ filmsUnseen = filterFilms(films)
 print(filmsUnseen)
 
 # Get the next row of filmsUnseen, check if the name of the film is contained in a filename in the destination folder.
-filmSearch = getFilmName(filmsUnseen, destination)
+try:
+    filmSearch = getFilmName(filmsUnseen, destination)
+except:
+    raise RuntimeError('No film to download.')
 
 # Get the magnet link
 magLink = getMagnetLink(t, filmSearch)

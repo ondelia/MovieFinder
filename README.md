@@ -5,7 +5,7 @@ This project will read a list of movies, find the first movie on the list you ha
 1. Check to make sure there are fewer than 10 movies in your destination folder (so that you don't have too many clogging up space).
 2. Open an Excel spreadsheet containing a list of films, release years, date watched, and ratings. See the example file.
 3. If you haven't watched a film yet, make sure there is nothing in the Date Watched or Rating field.
-4. In the same folder as your main.py script, create a .env file with the following variables: MOVIE_LIST, DESTINATION, QB_CLIENT, QB_LOGIN, QB_PASSWORD. The first is the path to your Excel spreadsheet with a list of films, the second is the path to your destination folder, and the last three are your login credentials for qBitTorrent.
+4. In the same folder as your main.py script, create a .env file with the following variables: MOVIE_LIST, DESTINATION_FOLDER, QB_CLIENT, QB_LOGIN, QB_PASSWORD. The first is the path to your Excel spreadsheet with a list of films, the second is the path to your destination folder, and the last three are your login credentials for qBitTorrent. Alternatively, you can modify the default values for these variables in the loadinfo.py file.
 5. Open qBitTorrent before you run the program.
 6. Run main.py from your command prompt.
 
